@@ -1,3 +1,8 @@
+slack用 bot
+起床したときにhello, worldと発言するとレートを更新してくれる。
+以下テンプレ
+
+
 # hello-world-bot
 
 hello-world-bot is a chat bot built on the [Hubot][hubot] framework. It was
