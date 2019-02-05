@@ -17,6 +17,7 @@ module.exports = (robot) => {
     var comment = "";
     var color = "#000000";
     var colors = ["#808080","#804000" ,"#008000" ,"#00C0C0" ,"#0000FF", "#C0C000", "#FF8000", "#FF0000"];
+    var icons = [":mojave_dynamic_2:", ":mojave_dynamic_3:", ":mojave_dynamic_6:", ":mojave_dynamic_7:", ":mojave_dynamic_9:", ":mojave_dynamic_11:", ":mojave_dynamic_15:"];
 
     var user = robot.brain.get(username);
     if(user){
@@ -52,7 +53,23 @@ module.exports = (robot) => {
     if(color_index > 7) color_index = 7;
     color = colors[color_index];
 
-    res.send(`@${username} performance:${Math.round(performance)} rating:${Math.round(newRating)} ${comment} ${color}`);
+    var icon = icons[0];
+    if(hours>=4 && hours<7) icon = icons[0];
+    else if(hours>=7 && hours<10) icon = icons[1];
+    else if(hours>=10 && hours<12) icon = icons[2];
+    else if(hours>=12 && hours<14) icon = icons[3];
+    else if(hours>=14 && hours<16) icon = icons[4];
+    else if(hours>=16 && hours<19) icon = icons[5];
+    else icon = icons[6];
+
+    var payload = {
+      username: "Hello Mojave",
+      text:`@${username} Perf:${Math.round(performance)} Rating:${Math.round(newRating)} ${comment} ${color}`,
+      as_user: false,
+      icon_emoji: `${icon}`
+    }
+
+    res.send(payload);
     robot.brain.set(username, JSON.stringify(userobj));
   })
 }
