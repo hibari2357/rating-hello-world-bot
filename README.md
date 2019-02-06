@@ -21,6 +21,8 @@ iconはmojave砂漠。Macのダイナミックディスプレイ準拠。時刻�
 
 ## Rating
 AtCoderの一部をそのまま...工夫しよう..
+　　
+
 <img src="https://raw.githubusercontent.com/hibari2357/rating-hello-world-bot/image/rating.png" width="40%">
 ## 構成
 - hubot
