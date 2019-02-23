@@ -63,7 +63,7 @@ module.exports = (robot) => {
     else icon = icons[6];
 
     var payload = {
-      username: "Hello Mojave",
+      username: "Kisyo Beginners Constest",
       text:`@${username} Perf:${Math.round(performance)} Rating:${Math.round(newRating)} ${comment} ${color}`,
       as_user: false,
       icon_emoji: `${icon}`
