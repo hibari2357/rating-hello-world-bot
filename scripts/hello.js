@@ -3,6 +3,9 @@ module.exports = (robot) => {
     var date = new Date();
     var hours = (date.getUTCHours() + 9)%24;
     var minutes = date.getMinutes();
+    var release = new Date(Date.UTC(2019, 1, 4, 15, 0, 0));
+    var timesOfContest = Math.floor((Date.parse(date.toUTCString()) - Date.parse(release))/(3600*24*1000)).toString().padStart(3, '0');
+
     var performance = 4000*Math.exp(-(Math.max(5,hours+minutes/60)-5)/3);
     var username = res.envelope.user.name;
     var newRating = (performance*0.9 + 800*0.9*0.9)/(0.9 + 0.9*0.9);
@@ -63,11 +66,13 @@ module.exports = (robot) => {
     else icon = icons[6];
 
     var payload = {
-      username: "Kisyo Beginners Constest",
+      username: `起床 Beginner Contest ${timesOfContest}`,
       text:`@${username} Perf:${Math.round(performance)} Rating:${Math.round(newRating)} ${comment} ${color}`,
       as_user: false,
       icon_emoji: `${icon}`
     }
+
+    console.log(JSON.stringify(payload));
 
     res.send(payload);
     robot.brain.set(username, JSON.stringify(userobj));
